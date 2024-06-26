@@ -1,0 +1,376 @@
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: linear-gradient(
+    to right,
+    rgb(162, 216, 162),
+    rgb(102, 194, 102)
+  ); */
+}
+.tickets {
+  width: 550px;
+  height: fit-content;
+  border: 0.4mm solid rgba(0, 0, 0, 0.08);
+  border-radius: 3mm;
+  box-sizing: border-box;
+  padding: 10px;
+  font-family: poppins;
+  max-height: 96vh;
+  overflow: auto;
+  background: white;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.ticket-selector {
+  background: rgb(243, 243, 243);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.seats {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 150px;
+  position: relative;
+}
+.status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.seats::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 220px;
+  height: 7px;
+  background: rgb(141, 198, 255);
+  border-radius: 0 0 3mm 3mm;
+  border-top: 0.3mm solid rgb(180, 180, 180);
+}
+.item {
+  font-size: 12px;
+  position: relative;
+}
+.item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  transform: translate(0, -50%);
+  width: 10px;
+  height: 10px;
+  background: rgb(255, 255, 255);
+  outline: 0.2mm solid rgb(120, 120, 120);
+  border-radius: 0.3mm;
+}
+.item:nth-child(2)::before {
+  background: rgb(180, 180, 180);
+  outline: none;
+}
+.item:nth-child(3)::before {
+  background: rgb(28, 185, 120);
+  outline: none;
+}
+.all-seats {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 15px;
+  margin: 60px 0;
+  margin-top: 20px;
+  position: relative;
+}
+.seat {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 0.5mm;
+  outline: 0.3mm solid rgb(180, 180, 180);
+  cursor: pointer;
+}
+.all-seats input:checked + label {
+  background: rgb(28, 185, 120);
+  outline: none;
+}
+.seat.booked {
+  background: rgb(180, 180, 180);
+  outline: none;
+}
+input {
+  display: none;
+}
+.timings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.dates {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dates-item {
+  width: 50px;
+  height: 40px;
+  background: rgb(233, 233, 233);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 0;
+  border-radius: 2mm;
+  cursor: pointer;
+}
+.day {
+  font-size: 12px;
+}
+.times {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.time {
+  font-size: 14px;
+  width: fit-content;
+  padding: 7px 14px;
+  background: rgb(233, 233, 233);
+  border-radius: 2mm;
+  cursor: pointer;
+}
+.timings input:checked + label {
+  background: rgb(28, 185, 120);
+  color: white;
+}
+.price {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+.total span {
+  font-size: 11px;
+  font-weight: 400;
+}
+.button {
+  background: rgb(60, 60, 60);
+  color: white;
+  font-family: poppins;
+  font-size: 14px;
+  padding: 7px 14px;
+  border-radius: 2mm;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 520px;
+}
+
+  .trains-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+  }
+  
+  .fake-checkbox {
+    height: 20px;
+    width: 26px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: inline-block; 
+    text-align: center;
+    line-height: 20px; 
+    cursor: pointer;
+  }
+  
+  .fake-checkbox span {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+  }
+
+/* Time line */
+
+
+.tracking-detail {
+
+  padding:3rem 0
+ }
+ #tracking {
+  margin-bottom:1rem
+ }
+ [class*=tracking-status-] p {
+  margin:0;
+  font-size:1.1rem;
+  color:#fff;
+  text-transform:uppercase;
+  text-align:center
+ }
+ [class*=tracking-status-] {
+  padding:1.6rem 0
+ }
+ .tracking-status-intransit {
+  background-color:#65aee0
+ }
+ .tracking-status-outfordelivery {
+  background-color:#f5a551
+ }
+ .tracking-status-deliveryoffice {
+  background-color:#f7dc6f
+ }
+ .tracking-status-delivered {
+  background-color:#4cbb87
+ }
+ .tracking-status-attemptfail {
+  background-color:#b789c7
+ }
+ .tracking-status-error,.tracking-status-exception {
+  background-color:#d26759
+ }
+ .tracking-status-expired {
+  background-color:#616e7d
+ }
+ .tracking-status-pending {
+  background-color:#ccc
+ }
+ .tracking-status-inforeceived {
+  background-color:#214977;
+ }
+ .tracking-list {
+  border:1px solid #e5e5e5
+ }
+ .tracking-item {
+  border:1px solid #e5e5e5;
+  position:relative;
+  padding:2rem 1.5rem .5rem 2.5rem;
+  font-size:.9rem;
+  margin-left:3rem;
+  min-height:5rem
+ }
+ .tracking-item:last-child {
+  padding-bottom:4rem
+ }
+ .tracking-item .tracking-date {
+  margin-bottom:.5rem
+ }
+ .tracking-item .tracking-date span {
+  color:#888;
+  font-size:85%;
+  padding-left:.4rem
+ }
+ .tracking-item .tracking-content {
+  padding:.5rem .8rem;
+  background-color:#f4f4f4;
+  border-radius:.5rem
+ }
+ .tracking-item .tracking-content span {
+  display:block;
+  color:#888;
+  font-size:85%
+ }
+ .tracking-item .tracking-icon {
+  line-height:2.6rem;
+  position:absolute;
+  left:-1.3rem;
+  width:2.6rem;
+  height:2.6rem;
+  text-align:center;
+  border-radius:50%;
+  font-size:1.1rem;
+  /* background-color:#fff;
+  color:#fff */
+ }
+ .tracking-item .tracking-icon.status-sponsored {
+  background-color:#f68
+ }
+ .tracking-item .tracking-icon.status-delivered {
+  background-color:#4cbb87
+ }
+ .tracking-item .tracking-icon.status-outfordelivery {
+  background-color:#f5a551
+ }
+ .tracking-item .tracking-icon.status-deliveryoffice {
+  background-color:#f7dc6f
+ }
+ .tracking-item .tracking-icon.status-attemptfail {
+  background-color:#b789c7
+ }
+ .tracking-item .tracking-icon.status-exception {
+  background-color:#d26759
+ }
+ .tracking-item .tracking-icon.status-inforeceived {
+  background-color:#59a4d2;
+  
+ }
+ .tracking-item .tracking-icon.status-intransit {
+  color:#e5e5e5;
+  border:1px solid #e5e5e5;
+  font-size:.6rem
+ }
+ @media(min-width:992px) {
+  .tracking-item {
+   margin-left:10rem
+  }
+  .tracking-item .tracking-date {
+   position:absolute;
+   left:-10rem;
+   width:7.5rem;
+   text-align:right
+  }
+  .tracking-item .tracking-date span {
+   display:block
+  }
+  .tracking-item .tracking-content {
+   padding:0;
+   background-color:transparent
+  }
+
+ }
+ @media (width < 600px) {
+  .button {
+    width:370px;
+   }
+}
+
+/* @media (width < 900px) {
+  .button {
+    width:470px;
+   }
+} */

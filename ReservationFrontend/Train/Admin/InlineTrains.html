@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- // -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-YWznkfwXO8FsqwMhbtqSUsFHqjsSWvUR0tch7vukJDWjTs9ocQ729hru2yUXYANkZ lighXtqZJ8jwvBWFNk6PdQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="./Admincss/InlineTrains.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="./AdminScripts/InlineTrains.js" defer></script>
+    <!-- // -->
+    <link rel="stylesheet" href="stylesa.css" />
+    <script src="./AdminScripts/SearchTrain.js" defer></script>
+    <title>Flight Reservation System</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">PRESIDIO</div>
+      <ul class="nav__links">
+        <!-- <li class="link"><a href="index.html">Home</a></li>
+        <li class="link"><a href="Reserve.html">Book</a></li>
+        <li class="link"><a href="#">Trains</a></li>
+        <li class="link"><a href="UserLogin.html">Login</a></li>
+        <li class="link"><a href="UserRegister.html">Register</a></li> -->
+      </ul>
+      <button class="btn">Contact</button>
+      <ul class="nav__links--mobile" style="display: none;">
+        <!-- <li class="link"><a href="index.html">Home</a></li>
+        <li class="link"><a href="Reserve.html">Book</a></li>
+        <li class="link"><a href="#">Trains</a></li>
+        <li class="link"><a href="UserLogin.html">Login</a></li>
+        <li class="link"><a href="UserRegister.html">Register</a></li> -->
+      </ul>
+      <button class="btn2">Menus</button>
+    </nav>
+    <header class="section__container header__container">
+      <h1 class="section__header">Find And Book<br />A Great Experience</h1>
+    </header>
+
+    <section class="section__container booking__container">
+      <div class="booking__nav">
+        <span></span>
+        <span>Search Train</span>
+        <span></span>
+      </div>
+      <form action="" id="form1">
+        <div class="form__group">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="text" id="startingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
+            </div> 
+            <p>Where you Departure from?</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-map-pin-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <input type="text" id="endingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
+            </div>
+            <p>Where are you going?</p>
+          </div>
+        </div>
+        <div class="form__group">
+          <span><i class="ri-calendar-line"></i></span>
+          <div class="input__content">
+            <div class="input__group">
+              <!-- <input type="datetime-local" /> -->
+              <input type="date" id="date1" name="trainDate" required />
+              <!-- <label>Departure</label> -->
+            </div>
+            <p>Add when to Departure</p>
+          </div>
+        </div>
+        <button type="submit" class="btn" style="font-size: 20px;">Search</button>
+      </form>
+    </section>
+  <br><br>
+
+  <div class="container py-5">
+    <h1 class="section__header" style="text-align: center;">Inline Trains</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 py-5" id="products-container">
+
+        <div class="col">
+            <!-- <div class="card">
+                <img src="../assets/traincard1.jpg " class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">TIRAMISU CAKE</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                        dignissimos accusantium amet similique velit iste.</p>
+                    <p>Train Starting Point</p>
+                </div>
+                <div class="mb-5 d-flex justify-content-around">
+                    <h3>190$</h3>
+                    <button class="btn btn-primaryn">Buy Now</button>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- <div id="pagination">Hi</div> -->
+    <div id="pagination" style="display: flex; justify-content: center; background-color: #f5f5f5; padding: 10px; border-radius: 5px;">
+    </div>
+</div>
+
+<h1 class="section__header" style="text-align: center; font-size: 20px;" id="noresulttext"></h1>
+    
+  <br><br>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h3>PRESIDIO</h3>
+          <p>
+            Presidio is an Indian public sector undertaking that provides ticketing, catering, 
+            and tourism services for the state-owned Indian Railways.
+          </p>
+          <p>
+            From friendly smiles to state-of-the-art aircraft, we connect the
+            world, ensuring safe, comfortable, and unforgettable experiences.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>INFORMATION</h4>
+          <p>Home</p>
+          <p>About</p>
+          <p>Offers</p>
+          <p>Seats</p>
+          <p>Destinations</p>
+        </div>
+        <div class="footer__col">
+          <h4>CONTACT</h4>
+          <p>Support</p>
+          <p>Media</p>
+          <p>Socials</p>
+        </div>
+      </div>
+      <div class="section__container footer__bar">
+        <p>Copyright © 2024 PRESIDIO. All rights reserved.</p>
+        <div class="socials">
+          <span><i class="ri-facebook-fill"></i></span>
+          <span><i class="ri-twitter-fill"></i></span>
+          <span><i class="ri-instagram-line"></i></span>
+          <span><i class="ri-youtube-fill"></i></span>
+        </div>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

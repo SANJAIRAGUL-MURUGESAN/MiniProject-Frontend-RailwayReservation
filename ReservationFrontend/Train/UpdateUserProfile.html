@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/UpdateUserProfile.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="./Script/UpdateUserProfile.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Update Profile</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">PRESIDIO</div>
+        <ul class="nav__links">
+          <li class="link"><a href="index.html">Home</a></li>
+          <li class="link"><a href="Reserve.html">Book</a></li>
+          <li class="link"><a href="#">Trains</a></li>
+          <li class="link"><a href="UserLogin.html">Login</a></li>
+          <li class="link"><a href="UserRegister.html">Register</a></li>
+        </ul>
+        <button class="btn">Contact</button>
+        <ul class="nav__links--mobile" style="display: none;">
+          <li class="link"><a href="index.html">Home</a></li>
+          <li class="link"><a href="Reserve.html">Book</a></li>
+          <li class="link"><a href="#">Trains</a></li>
+          <li class="link"><a href="UserLogin.html">Login</a></li>
+          <li class="link"><a href="UserRegister.html">Register</a></li>
+        </ul>
+        <button class="btn2">Menus</button>
+      </nav>
+      <header class="section__container header__container">
+        <h1 class="section__header" style="color: whitesmoke;">Register - Reserve<br />End to End!</h1>
+      </header>
+    <div class="container">
+        <form action="" id="form">
+            <h1>Update Profile</h1>
+            <div class="input-group">
+                <label for="username">UserName</label>
+                <input type="text" id="username" name="username">
+                <div class="error"></div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" >
+                <div class="error"></div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <div class="error"></div>
+            </div>
+            <div class="input-group">
+                <label for="phonenumber">Phone Number</label>
+                <input type="text" id="phonenumber" name="phonenumber">
+                <div class="error"></div>
+            </div>
+            <div class="input-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="female">Other</option>
+                  </select>
+            </div>
+            <div class="input-group">
+                <label for="gender">Disability</label>
+                <select id="gender" name="gender">
+                  <option value="female">No</option>
+                  <option value="male">Yes</option>
+                  </select>
+            </div>
+            <div class="input-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address"></textarea>
+                <div class="error"></div>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <br><br>
+</body>
+</html>

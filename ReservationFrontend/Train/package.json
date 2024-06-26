@@ -1,0 +1,14 @@
+{
+  "name": "train",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "toastify-js": "^1.12.0"
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/Register.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="./Script/LoginScript.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>User Login</title>
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">PRESIDIO</div>
+        <ul class="nav__links">
+            <!-- <li class="link"><a href="index.html">Home</a></li>
+            <li class="link"><a href="Reserve.html">Book</a></li>
+            <li class="link"><a href="#">Trains</a></li>
+            <li class="link"><a href="UserLogin.html">Login</a></li>
+            <li class="link"><a href="UserRegister.html">Register</a></li> -->
+          </ul>
+          <button class="btn">Contact</button>
+          <ul class="nav__links--mobile" style="display: none;">
+            <!-- <li class="link"><a href="index.html">Home</a></li>
+            <li class="link"><a href="Reserve.html">Book</a></li>
+            <li class="link"><a href="">Trains</a></li>
+            <li class="link"><a href="UserLogin.html">Login</a></li>
+            <li class="link"><a href="UserRegister.html">Register</a></li> -->
+          </ul>
+        <button class="btn2">Menus</button>
+      </nav>
+      <header class="section__container header__container">
+        <h1 class="section__header" style="color: whitesmoke;">Just Login, Reserve!</h1>
+      </header>
+    <div class="container">
+        <form action="" id="form">
+            <h1>Login</h1>
+            <div class="input-group">
+                <label for="userid">UserID</label>
+                <input type="text" id="userid" name="userid">
+                <div class="error"></div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <div class="error"></div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <br><br>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+</html>

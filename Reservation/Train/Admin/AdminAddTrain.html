@@ -106,7 +106,7 @@
                 <input type="text" id="endingpoint" name="endingpoint">
                 <div class="error"></div>
             </div>
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <label for="trainstartdatetime">Train Start Date and Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
                 <input type="text" id="trainstartdatetime" name="trainstartdatetime">
                 <div class="error"></div>
@@ -115,8 +115,28 @@
                 <label for="trainenddatetime">Train End Date and Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
                 <input type="text" id="trainenddatetime" name="trainenddatetime">
                 <div class="error"></div>
+            </div> -->
+            <div class="input-group">
+              <label for="traintartdate">Train Start Date</label>
+              <input type="date" id="traintartdate" name="traintartdate">
+              <div class="error"></div>
             </div>
             <div class="input-group">
+              <label for="trainstarttime">Train Start Time</label>
+              <input type="time" id="trainstarttime" name="trainstarttime">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="trainenddate">Train End Date</label>
+              <input type="date" id="trainenddate" name="trainenddate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="trainendtime">Train End Time</label>
+              <input type="time" id="trainendtime" name="trainendtime">
+              <div class="error"></div>
+            </div>
+            <!-- <div class="input-group">
                 <label for="trainstarttime">Train Arrival Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
                 <input type="text" id="trainstarttime" name="trainstarttime">
                 <div class="error"></div>
@@ -125,6 +145,26 @@
                 <label for="trainendtime">Train Departure Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
                 <input type="text" id="trainendtime" name="trainendtime">
                 <div class="error"></div>
+            </div> -->
+            <div class="input-group">
+              <label for="trainarrivaldate">Train Arrival Date</label>
+              <input type="date" id="trainarrivaldate" name="trainarrivaldate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="trainarrivaltime">Train Arrival Time</label>
+              <input type="time" id="trainarrivaltime" name="trainarrivaltime">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="traindeparturedate">Train Departure Date</label>
+              <input type="date" id="traindeparturedate" name="traindeparturedate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="traindeparturetime">Train Departure Time</label>
+              <input type="time" id="traindeparturetime" name="traindeparturetime">
+              <div class="error"></div>
             </div>
             <div class="input-group">
                 <label for="totalseats">Total Seats</label>
@@ -152,6 +192,7 @@
         <div class="d-grid gap-2 col-6 mx-auto">
         <button class="btn btn-primary" type="button"><a href="AdminAddStation.html" style="color: white;" target="_blank">Add Station</a></button>
         <button class="btn btn-primary" type="button"><a href="AdminAddTrack.html" style="color: white;" target="_blank">Add Track</a></button>
+        <button class="btn btn-primary" type="button"><a href="AdminAddTrainRoute.html" style="color: white;" target="_blank">Add Train Route</a></button>
       </div>
     
     </div>

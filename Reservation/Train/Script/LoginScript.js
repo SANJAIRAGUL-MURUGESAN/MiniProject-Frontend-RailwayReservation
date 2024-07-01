@@ -64,7 +64,7 @@ form.addEventListener('submit',(e)=>{
             userlogin()
         }else{
             Toastify({
-                text: "Hey Admin, You already Logged In! Redirecting...",
+                text: "Hey User, You already Logged In! Redirecting...",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },

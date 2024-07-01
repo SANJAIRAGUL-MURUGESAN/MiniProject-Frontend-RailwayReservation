@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./Admincss/AdminAddTrain.css">
     <script src="./AdminScripts/AdminAddTrainRoute.js" defer></script>
     <link rel="stylesheet" href="stylesa.css" />
+    <script src="./AdminScripts/SearchTrain.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/x-icon" href="https://www.presidio.com/icheestu/2021/03/favicon-32x32-1.png">
     <title>Presidio Railways</title>
   </head>
@@ -17,19 +19,19 @@
     <nav>
       <div class="nav__logo">PRESIDIO</div>
       <ul class="nav__links">
-        <li class="link"><a href="index.html">Home</a></li>
+        <!-- <li class="link"><a href="index.html">Home</a></li>
         <li class="link"><a href="Reserve.html">Book</a></li>
         <li class="link"><a href="#">Trains</a></li>
         <li class="link"><a href="UserLogin.html">Login</a></li>
-        <li class="link"><a href="UserRegister.html">Register</a></li>
+        <li class="link"><a href="UserRegister.html">Register</a></li> -->
       </ul>
       <button class="btn">Contact</button>
       <ul class="nav__links--mobile" style="display: none;">
-        <li class="link"><a href="index.html">Home</a></li>
+        <!-- <li class="link"><a href="index.html">Home</a></li>
         <li class="link"><a href="Reserve.html">Book</a></li>
         <li class="link"><a href="#">Trains</a></li>
         <li class="link"><a href="UserLogin.html">Login</a></li>
-        <li class="link"><a href="UserRegister.html">Register</a></li>
+        <li class="link"><a href="UserRegister.html">Register</a></li> -->
       </ul>
       <button class="btn2">Menus</button>
     </nav>
@@ -43,14 +45,14 @@
         <span>Search Train</span>
         <span></span>
       </div>
-      <form>
+      <form action="" id="form1">
         <div class="form__group">
           <span><i class="ri-map-pin-line"></i></span>
           <div class="input__content">
             <div class="input__group">
-              <input type="text" />
-              <label>Location</label>
-            </div>
+              <input type="text" id="startingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
+            </div> 
             <p>Where you Departure from?</p>
           </div>
         </div>
@@ -58,8 +60,8 @@
           <span><i class="ri-map-pin-line"></i></span>
           <div class="input__content">
             <div class="input__group">
-              <input type="text" />
-              <label>Location</label>
+              <input type="text" id="endingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
             </div>
             <p>Where are you going?</p>
           </div>
@@ -69,13 +71,13 @@
           <div class="input__content">
             <div class="input__group">
               <!-- <input type="datetime-local" /> -->
-              <input type="datetime-local" id="date" name="trainDate" value="2024-06-24T00:00:00" step="1"/>
+              <input type="date" id="date1" name="trainDate" required />
               <!-- <label>Departure</label> -->
             </div>
             <p>Add when to Departure</p>
           </div>
         </div>
-        <button class="btn" style="font-size: 20px;"><i class="ri-search-line"></i>Search</button>
+        <button type="submit" class="btn" style="font-size: 20px;">Search</button>
       </form>
     </section>
     <br><br>
@@ -83,6 +85,46 @@
       <form action="" id="form">
             <h1>Add Train Route</h1>
             <div class="input-group">
+              <label for="routestartdate">Route Start Date</label>
+              <input type="date" id="routestartdate" name="routestartdate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routestarttime">Route Start Time</label>
+              <input type="time" id="routestarttime" name="routestarttime">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routeenddate">Route End Date</label>
+              <input type="date" id="routeenddate" name="routeenddate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routeendtime">Route End Time</label>
+              <input type="time" id="routeendtime" name="routeendtime">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routearrivaldate">Route Arrival Date</label>
+              <input type="date" id="routearrivaldate" name="routearrivaldate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routearrivaltime">Route Arrival Time</label>
+              <input type="time" id="routearrivaltime" name="routearrivaltime">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routedeparturedate">Route Departure Date</label>
+              <input type="date" id="routedeparturedate" name="routedeparturedate">
+              <div class="error"></div>
+            </div>
+            <div class="input-group">
+              <label for="routedeparturetime">Route Departure Time</label>
+              <input type="time" id="routedeparturetime" name="routedeparturetime">
+              <div class="error"></div>
+            </div>
+            <!-- <div class="input-group">
               <label for="routestartdatetime">Route Start Date and Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
               <input type="text" id="routestartdatetime" name="routestartdatetime">
               <div class="error"></div>
@@ -101,7 +143,7 @@
               <label for="routedeparturetime">Route Departure Time (YYYY-MM-DD HH:MM [AM/PM]):</label>
               <input type="text" id="routedeparturetime" name="routedeparturetime">
               <div class="error"></div>
-          </div>
+          </div> -->
           <div class="input-group">
             <label for="stopnumber">Stop Number</label>
             <input type="number" id="stopnumber" name="stopnumber">
@@ -122,16 +164,33 @@
             <input type="number" id="stationid" name="stationid">
             <div class="error"></div>
           </div>
-          <div class="input-group">
+          <!-- <div class="input-group">
             <label for="trackid">Track ID</label>
             <input type="number" id="trackid" name="trackid">
             <div class="error"></div>
-          </div>
+          </div> -->
           <div class="input-group">
-            <label for="tracknumber">Track Number</label>
-            <input type="number" id="tracknumber" name="tracknumber">
+            <label for="trackid">Availble Track(Id's) for your selected station</label>
+            <select id="trackid" name="trackid">
+                <!-- Options will be dynamically populated here -->
+            </select>
             <div class="error"></div>
           </div>
+          <div class="input-group">
+            <label for="tracknumber">Track Number for your selected TrackID</label>
+            <!-- <input type="number" id="tracknumber" name="tracknumber"> -->
+            <input type="number" id="tracknumber" name="tracknumber" disabled>
+            <div class="error"></div>
+          </div>
+          <!-- <div class="input-group">
+            <label for="rouetdate">Train Route Date</label>
+            <input type="date" id="rouetdate" name="rouetdate">
+            <div class="error"></div>
+          </div>
+          <div class="input-group">
+            <label for="routetime">Train Route Time</label>
+            <input type="time" id="routetime" name="routetime">
+          </div> -->
         <button type="submit">Add Route</button>
       </form>
   </div>
@@ -175,6 +234,7 @@
         </div>
       </div>
     </footer>
-    <script src="../script.js"></script>
+    <script src="./script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>

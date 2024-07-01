@@ -112,3 +112,25 @@ async function updateNavLinks() {
 
 updateNavLinks(); // Call the function on page load
 
+window.onload = function() {
+  console.log('paymenturln')
+  checkPaymentUrl();
+};
+
+function checkPaymentUrl(){
+  console.log('hi')
+  const currentUrl = window.location.href;
+  console.log(currentUrl);
+  if(currentUrl==="https://buy.stripe.com/c/pay/cs_test_a19pvxqx27KdrXm51ACrm848KCyybdMnGL80as1M9zjDrkmuaT8K6mPn1Y#fidpamZkaWAnPydkcHFqJyknZHVsTmB8Jz8ndW5acWB2cVowNEtjTEFqVkBKaEE8fDBXNmF3fHxORE5rXDcxM1FoS001MXczN0hvaHxoNzA0SncyfD1zVEBwTk1XR2NCYmJhVnJCSEAzNHNDQ0lvZzZyaXRqbHFDRnxuYTU1RFZTPWtCUWMnKSdjd2poVmB3c2B3Jz9xd3BgKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl"){
+  // if(currentUrl === "file:///C:/Users/VC/Desktop/RailwayReservationFrontend/Reservation/Train/index.html"){
+    Toastify({
+      text: "Hey User, Payment Successful! Redirecting...",
+      style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+      callback: function() {
+        window.open('index.html'); // Redirect after toast disappears
+      }
+  }).showToast();
+  }
+}

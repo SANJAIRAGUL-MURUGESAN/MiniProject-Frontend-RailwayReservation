@@ -3,21 +3,36 @@ const trainname = document.querySelector('#trainname');
 const trainnumber = document.querySelector('#trainnumber');
 const startingpoint = document.querySelector('#startingpoint');
 const endingpoint = document.querySelector('#endingpoint');
-const starttime = document.querySelector('#trainstarttime');
-const endtime = document.querySelector('#trainendtime');
+// const starttime = document.querySelector('#trainstarttime');
+// const endtime = document.querySelector('#trainendtime');
 const totalseats = document.querySelector('#totalseats');
 const priceperkm = document.querySelector('#priceperkm');
 const trainstatus = document.querySelector('#trainstatus');
-const trainstartdate = document.querySelector('#trainstartdatetime');
-const trainenddate = document.querySelector('#trainenddatetime');
-
+// const trainstartdate = document.querySelector('#trainstartdatetime');
+// const trainenddate = document.querySelector('#trainenddatetime');
 
 
 async function addTrain(){
-    const convertedstarttime = await extractDateTime(starttime.value)
-    const convertedendtime = await extractDateTime(endtime.value)
-    const convertedTrainStartDate = await extractDateTime(trainstartdate.value)
-    const convertedTrainEndDate = await extractDateTime(trainenddate.value)
+
+    const trainStartDate = document.getElementById("traintartdate");
+    const trainStartTime = document.getElementById("trainstarttime");
+    const trainEndDate = document.getElementById("trainenddate");
+    const trainEndTime = document.getElementById("trainendtime");
+    const trainArrivalDate = document.getElementById("trainarrivaldate");
+    const trainArrivalTime = document.getElementById("trainarrivaltime");
+    const trainDepartureDate = document.getElementById("traindeparturedate");
+    const trainDeparuteTime = document.getElementById("traindeparturetime");
+
+    const trainstartdatetime = await timefunction(trainStartDate.value,trainStartTime.value)
+    const trainendatetime = await timefunction(trainEndDate.value,trainEndTime.value)
+    const trainarrivaldatetime = await timefunction(trainArrivalDate.value,trainArrivalTime.value)
+    const traindeparturedatetime = await timefunction(trainDepartureDate.value,trainDeparuteTime.value)
+
+
+    const convertedstarttime = await extractDateTime(trainstartdatetime)
+    const convertedendtime = await extractDateTime(trainendatetime)
+    const convertedTrainStartDate = await extractDateTime(trainarrivaldatetime)
+    const convertedTrainEndDate = await extractDateTime(traindeparturedatetime)
 
     console.log(convertedTrainStartDate)
 
@@ -70,8 +85,6 @@ async function addTrain(){
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    console.log(trainstartdate.value)
-    console.log(starttime.value)
     if(!validateInputs()){
         return
     }else{
@@ -89,8 +102,35 @@ form.addEventListener('submit',(e)=>{
     }
 })
 
+async function timefunction(date,time){
+    // Get the value of the input
+    let inputValue = time;
+    
+    // Check if input value is in HH:mm format
+    if (/^\d{2}:\d{2}$/.test(inputValue)) {
+      // Split hours and minutes
+      let [hours, minutes] = inputValue.split(':');
+      // Convert hours to integer
+      hours = parseInt(hours, 10);
+      // Determine AM or PM
+      let period = (hours >= 12) ? 'PM' : 'AM';
+      // Adjust hours for PM display
+      if (hours > 12) {
+        hours -= 12;
+      } else if (hours === 0) {
+        hours = 12; // Midnight (00:00) should display as 12:00 AM
+      }
+      // Construct the formatted time string
+      let formattedTime = `${date} ${hours}:${minutes} ${period}`;
+      // Store the formatted time string as needed (e.g., in a variable)
+      console.log("Formatted time:", formattedTime);
+      return formattedTime;
+      
+    }
+}
+
   
-function convertToDatetimeFormat(dateStr, timeStr) {
+async function convertToDatetimeFormat(dateStr, timeStr) {
     // Parse the date string "2024-06-21" to a Date object
     const [year, month, day] = dateStr.split('-');
     let date = new Date(Date.UTC(year, month - 1, day)); // Month is 0-indexed in JavaScript Date
@@ -149,12 +189,13 @@ async function extractDateTime(dateTimeStr) {
 
 
 function validateInputs(){
+
     const trainnameVal = trainname.value.trim()
     const trainnumberVal = trainnumber.value
     const startingpointVal = startingpoint.value.trim();
     const endingpointVal = endingpoint.value.trim();
-    const starttimeVal = starttime.value.trim();
-    const endtimeVal = endtime.value.trim();
+    // const starttimeVal = starttime.value.trim();
+    // const endtimeVal = endtime.value.trim();
     const totalseatsVal = totalseats.value;
     const priceperkmVal = priceperkm.value.trim();
     const trainstatusVal = trainstatus.value.trim();
@@ -210,39 +251,39 @@ function validateInputs(){
         setSuccess(endingpoint)
     }
 
-    const pattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2} (?:[AP]M)$/i;
-    // 2023-11-19 03:22 PM
-    if (pattern.test(starttimeVal)) {
-        setSuccess(starttime)
-    }
-    else {
-        success = false;
-        setError(starttime,'Invalid Start Time format')
-    }
+    // const pattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2} (?:[AP]M)$/i;
+    // // 2023-11-19 03:22 PM
+    // if (pattern.test(starttimeVal)) {
+    //     setSuccess(starttime)
+    // }
+    // else {
+    //     success = false;
+    //     setError(starttime,'Invalid Start Time format')
+    // }
 
-    if (pattern.test(endtimeVal)) {
-        setSuccess(endtime)
-    }
-    else {
-        success = false;
-        setError(endtime,'Invalid End Time format')
-    }
+    // if (pattern.test(endtimeVal)) {
+    //     setSuccess(endtime)
+    // }
+    // else {
+    //     success = false;
+    //     setError(endtime,'Invalid End Time format')
+    // }
 
-    if(pattern.test(trainstartdate.value)){
-        setSuccess(trainstartdate)
-    }
-    else {
-        success = false;
-        setError(trainstartdate,'Invalid Train Start Date and Time format')
-    }
+    // if(pattern.test(trainstartdate.value)){
+    //     setSuccess(trainstartdate)
+    // }
+    // else {
+    //     success = false;
+    //     setError(trainstartdate,'Invalid Train Start Date and Time format')
+    // }
 
-    if(pattern.test(trainenddate.value)){
-        setSuccess(trainenddate)
-    }
-    else {
-        success = false;
-        setError(trainenddate,'Invalid Train End Date and Time format')
-    }
+    // if(pattern.test(trainenddate.value)){
+    //     setSuccess(trainenddate)
+    // }
+    // else {
+    //     success = false;
+    //     setError(trainenddate,'Invalid Train End Date and Time format')
+    // }
 
     if(totalseatsVal === ''){
         success=false;

@@ -10,7 +10,7 @@ async function populateCheckboxes(i) {
     try {
       
       // Clear existing checkboxes
-      checkboxesContainer.innerHTML = '';
+    //   checkboxesContainer.innerHTML = '';
   
     //   for (let i = s; i <= e; i++) {
               const checkbox = document.createElement('input');

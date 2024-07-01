@@ -5,6 +5,7 @@ const trackendingpoint = document.querySelector('#trackendingpoint');
 const trackstatus = document.querySelector('#trackstatus');
 const stationid = document.querySelector('#stationid');
 
+
 function addTrack(){
     fetch('http://localhost:5062/api/Admin/AddTrackToStationByAdmin', {
         method: 'POST',

@@ -1,8 +1,8 @@
 const form = document.querySelector('#form')
-const routstartdate = document.querySelector('#routestartdatetime');
-const routeenddate = document.querySelector('#routeenddatetime');
-const routearrivaltime = document.querySelector('#routearrivaltime');
-const routedeparturetime = document.querySelector('#routedeparturetime');
+// const routstartdate = document.querySelector('#routestartdatetime');
+// const routeenddate = document.querySelector('#routeenddatetime');
+// const routearrivaltime = document.querySelector('#routearrivaltime');
+// const routedeparturetime = document.querySelector('#routedeparturetime');
 const stopnumber = document.querySelector('#stopnumber');
 const kmdistance = document.querySelector('#kmdistance');
 const trainid = document.querySelector('#trainid');
@@ -11,11 +11,145 @@ const trackid = document.querySelector('#trackid');
 const tracknumber = document.querySelector('#tracknumber');
 
 
+async function populateStationTrackDropdown(classes) {
+    const dropdown = document.getElementById('trackid');
+
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Create and append options
+    classes.forEach(cls => {
+        console.log(cls)
+        const option = document.createElement('option');
+        option.value = cls; 
+        option.textContent = cls; 
+        dropdown.appendChild(option);
+
+        // populateCheckboxes(cls.startingSeatNumber,cls.endingSeatNumber)
+    });
+
+    console.log("Trackid",trackid.value)
+    
+    await fetch('http://localhost:5062/api/Admin/GetTrack', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trackid.value)
+    })
+    .then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+            // throw new Error('Failed to fetch Tracks');
+            Toastify({
+                text: data.message,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        }else{
+            console.log(data)
+            document.getElementById('tracknumber').value = data.trackNumber
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching clasTracksses:', error);
+        // alert('Failed to fetch classes. Please try again later.');
+        Toastify({
+            text: error.message,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    });
+
+    return classes;
+}
+
+async function fetchTracks() {
+    await fetch('http://localhost:5062/api/Admin/CheckReservedTracksofStation', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(stationid.value)
+    })
+    .then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+            // throw new Error('Failed to fetch Tracks');
+            Toastify({
+                text: data.message,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        }else{
+            console.log(data.availableTracks)
+            if(data===undefined || data.availableTracks.length === 0){
+                Toastify({
+                    text: "Hey Admin, No Available Tracks Found for your selected station!...",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            }else{
+                classesn = await populateStationTrackDropdown(data.availableTracks); // Populate dropdown with fetched data
+            }
+        }
+
+    })
+    .catch(error => {
+        console.error('Error fetching classes:', error);
+        // alert('Failed to fetch classes. Please try again later.');
+        Toastify({
+            text: error.message,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    });
+}
+
+// document.getElementById('stationid').addEventListener('change', fetchTracks);
+
+document.getElementById('stationid').addEventListener("keyup", async function() {
+    // const value = this.value;
+    // // Call your function here with the value
+    // yourFunction(value);
+    const v = document.getElementById('stationid')
+    if(v.value > 0){
+        console.log('yes')
+        await fetchTracks()
+    }else{
+        console.log('no')
+    }
+  });
+
+
 async function addTrainRoute(){
-    const convertedstartdate = await extractDateTime(routstartdate.value)
-    const convertedenddate = await extractDateTime(routeenddate.value)
-    const convertedarrivalTime = await extractDateTime(routearrivaltime.value)
-    const convertedDepartureTime = await extractDateTime(routedeparturetime.value)
+
+    const routeStartDate = document.getElementById("routestartdate");
+    const routeStartTime = document.getElementById("routestarttime");
+    const routeEndDate = document.getElementById("routeenddate");
+    const routeEndTime = document.getElementById("routeendtime");
+    const routeArrivalDate = document.getElementById("routearrivaldate");
+    const routeArrivalTime = document.getElementById("routearrivaltime");
+    const routeDepartureDate = document.getElementById("routedeparturedate");
+    const routeDeparuteTime = document.getElementById("routedeparturetime");
+
+    const routestartdatetime = await timefunction(routeStartDate.value,routeStartTime.value)
+    const routeendatetime = await timefunction(routeEndDate.value,routeEndTime.value)
+    const routearrivaldatetime = await timefunction(routeArrivalDate.value,routeArrivalTime.value)
+    const routedeparturedatetime = await timefunction(routeDepartureDate.value,routeDeparuteTime.value)
+
+
+    const convertedstartdate = await extractDateTime(routestartdatetime)
+    const convertedenddate = await extractDateTime(routeendatetime)
+    const convertedarrivalTime = await extractDateTime(routearrivaldatetime)
+    const convertedDepartureTime = await extractDateTime(routedeparturedatetime)
 
     fetch('http://localhost:5062/api/Admin/AddTrainRouteByAdmin', {
         method: 'POST',
@@ -59,6 +193,33 @@ form.addEventListener('submit',(e)=>{
         addTrainRoute()
     }
 })
+
+async function timefunction(date,time){
+    // Get the value of the input
+    let inputValue = time;
+    
+    // Check if input value is in HH:mm format
+    if (/^\d{2}:\d{2}$/.test(inputValue)) {
+      // Split hours and minutes
+      let [hours, minutes] = inputValue.split(':');
+      // Convert hours to integer
+      hours = parseInt(hours, 10);
+      // Determine AM or PM
+      let period = (hours >= 12) ? 'PM' : 'AM';
+      // Adjust hours for PM display
+      if (hours > 12) {
+        hours -= 12;
+      } else if (hours === 0) {
+        hours = 12; // Midnight (00:00) should display as 12:00 AM
+      }
+      // Construct the formatted time string
+      let formattedTime = `${date} ${hours}:${minutes} ${period}`;
+      // Store the formatted time string as needed (e.g., in a variable)
+      console.log("Formatted time:", formattedTime);
+      return formattedTime;
+      
+    }
+}
 
 function convertToDatetimeFormat(dateStr, timeStr) {
     // Parse the date string "2024-06-21" to a Date object
@@ -115,52 +276,52 @@ async function extractDateTime(dateTimeStr) {
   }
 
 function validateInputs(){
-    const routstartdateVal = routstartdate.value.trim()
-    const routeenddateVal = routeenddate.value.trim()
-    const routearrivaltimeVal = routearrivaltime.value.trim();
-    const routedeparturetimeVal = routedeparturetime.value.trim();
+    // const routstartdateVal = routstartdate.value.trim()
+    // const routeenddateVal = routeenddate.value.trim()
+    // const routearrivaltimeVal = routearrivaltime.value.trim();
+    // const routedeparturetimeVal = routedeparturetime.value.trim();
     const stopnumberVal = stopnumber.value;
     const kmdistanceVal = kmdistance.value.trim();
     const trainidVal = trainid.value;
     const stationidVal = stationid.value;
-    const trackidVal = trackid.value;
-    const tracknumberVal = tracknumber.value;
+    // const trackidVal = trackid.value;
+    // const tracknumberVal = tracknumber.value;
 
     let success = true
 
-    const pattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2} (?:[AP]M)$/i;
-    // 2023-11-19 03:22 PM
-    if (pattern.test(routearrivaltimeVal)) {
-        setSuccess(routearrivaltime)
-    }
-    else {
-        success = false;
-        setError(routearrivaltime,'Invalid Route Arrival Time format')
-    }
+    // const pattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2} (?:[AP]M)$/i;
+    // // 2023-11-19 03:22 PM
+    // if (pattern.test(routearrivaltimeVal)) {
+    //     setSuccess(routearrivaltime)
+    // }
+    // else {
+    //     success = false;
+    //     setError(routearrivaltime,'Invalid Route Arrival Time format')
+    // }
 
-    if (pattern.test(routedeparturetimeVal)) {
-        setSuccess(routedeparturetime)
-    }
-    else {
-        success = false;
-        setError(routedeparturetime,'Invalid Route Departure Time format')
-    }
+    // if (pattern.test(routedeparturetimeVal)) {
+    //     setSuccess(routedeparturetime)
+    // }
+    // else {
+    //     success = false;
+    //     setError(routedeparturetime,'Invalid Route Departure Time format')
+    // }
 
-    if (pattern.test(routstartdateVal)) {
-        setSuccess(routstartdate)
-    }
-    else {
-        success = false;
-        setError(routstartdate,'Invalid Route Start Date and Time format')
-    }
+    // if (pattern.test(routstartdateVal)) {
+    //     setSuccess(routstartdate)
+    // }
+    // else {
+    //     success = false;
+    //     setError(routstartdate,'Invalid Route Start Date and Time format')
+    // }
 
-    if (pattern.test(routeenddateVal)) {
-        setSuccess(routeenddate)
-    }
-    else {
-        success = false;
-        setError(routeenddate,'Invalid Route End Date and Time format')
-    }
+    // if (pattern.test(routeenddateVal)) {
+    //     setSuccess(routeenddate)
+    // }
+    // else {
+    //     success = false;
+    //     setError(routeenddate,'Invalid Route End Date and Time format')
+    // }
 
     if(stopnumberVal === ''){
         success=false;
@@ -217,31 +378,31 @@ function validateInputs(){
         setSuccess(trainid)
     }
 
-    if(trackidVal === ''){
-        success=false;
-        setError(trackid,'Track ID is required')
-    }else if(trackidVal == 0){
-        success=false;
-        setError(trackid,'Track ID cannot be equal to zero')
-    }else if(trackidVal < 0){
-        success=false;
-        setError(trackid,'Track ID cannot be less to zero');
-    }else{
-        setSuccess(trackid)
-    }
+    // if(trackidVal === ''){
+    //     success=false;
+    //     setError(trackid,'Track ID is required')
+    // }else if(trackidVal == 0){
+    //     success=false;
+    //     setError(trackid,'Track ID cannot be equal to zero')
+    // }else if(trackidVal < 0){
+    //     success=false;
+    //     setError(trackid,'Track ID cannot be less to zero');
+    // }else{
+    //     setSuccess(trackid)
+    // }
 
-    if(tracknumberVal === ''){
-        success=false;
-        setError(tracknumber,'Track Number is required')
-    }else if(tracknumberVal == 0){
-        success=false;
-        setError(tracknumber,'Track Number cannot be equal to zero')
-    }else if(tracknumberVal < 0){
-        success=false;
-        setError(tracknumber,'Track Number cannot be less to zero');
-    }else{
-        setSuccess(tracknumber)
-    }
+    // if(tracknumberVal === ''){
+    //     success=false;
+    //     setError(tracknumber,'Track Number is required')
+    // }else if(tracknumberVal == 0){
+    //     success=false;
+    //     setError(tracknumber,'Track Number cannot be equal to zero')
+    // }else if(tracknumberVal < 0){
+    //     success=false;
+    //     setError(tracknumber,'Track Number cannot be less to zero');
+    // }else{
+    //     setSuccess(tracknumber)
+    // }
 
 
     return success;

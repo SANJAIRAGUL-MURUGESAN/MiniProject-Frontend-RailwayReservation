@@ -9,6 +9,7 @@
     />
     <link rel="icon" type="image/x-icon" href="https://www.presidio.com/icheestu/2021/03/favicon-32x32-1.png">
     <link rel="stylesheet" href="./css/CancalReservation.css">
+    <script src="./Script/SearchTrain.js" defer></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="./Script/CancelReservationFormValidation.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
@@ -44,14 +45,14 @@
         <span>Search Train</span>
         <span></span>
       </div>
-      <form>
+      <form action="" id="form1">
         <div class="form__group">
           <span><i class="ri-map-pin-line"></i></span>
           <div class="input__content">
             <div class="input__group">
-              <input type="text" />
-              <label>Location</label>
-            </div>
+              <input type="text" id="startingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
+            </div> 
             <p>Where you Departure from?</p>
           </div>
         </div>
@@ -59,8 +60,8 @@
           <span><i class="ri-map-pin-line"></i></span>
           <div class="input__content">
             <div class="input__group">
-              <input type="text" />
-              <label>Location</label>
+              <input type="text" id="endingpoint1" placeholder="Location" required/>
+              <!-- <label>Location</label> -->
             </div>
             <p>Where are you going?</p>
           </div>
@@ -70,13 +71,13 @@
           <div class="input__content">
             <div class="input__group">
               <!-- <input type="datetime-local" /> -->
-              <input type="datetime-local" id="date" name="trainDate" value="2024-06-24T00:00:00" step="1"/>
+              <input type="date" id="date1" name="trainDate" required />
               <!-- <label>Departure</label> -->
             </div>
             <p>Add when to Departure</p>
           </div>
         </div>
-        <button class="btn" style="font-size: 20px;"><i class="ri-search-line"></i>Search</button>
+        <button type="submit" class="btn" style="font-size: 20px;">Search</button>
       </form>
     </section>
     <br><br>

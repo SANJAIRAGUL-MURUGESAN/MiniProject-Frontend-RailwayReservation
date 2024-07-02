@@ -11,11 +11,11 @@ async function calculatetotal() {
          },
     })
 
-    if (!response.ok) {
-        const data = await res.json();
-        console.log(data.errorCode)
-        alert(data.message);
-    }
+    // if (!response.ok) {
+    //     const data = await response.json();
+    //     console.log(data.errorCode)
+    //     alert(data.message);
+    // }
 
     const count = await response.json();
     console.log("Total Inline Trains:", count);
@@ -263,7 +263,16 @@ async function createTrainCard(product) {
       if(total>0){
         fetchData(total);
       }else{
-        document.getElementById('noresulttext').innerHTML = 'No Upcoming Reservations Found '
+        Toastify({
+          text: "Hey Admin, No Inline Trains Found!",
+          style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+          callback: function() {
+            window.open('AdminHome.html'); // Redirect after toast disappears
+          }
+      }).showToast();
+        document.getElementById('noresulttext').innerHTML = 'No Inline Trains Found '
       }
     }
     

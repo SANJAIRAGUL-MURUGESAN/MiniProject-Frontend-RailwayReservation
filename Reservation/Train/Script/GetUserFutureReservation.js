@@ -26,11 +26,11 @@ async function calculatetotal() {
     })
 
 
-    if (!response.ok) {
-        const data = await response.json();
-        console.log(data.errorCode)
-        alert(data.message);
-    }
+    // if (!response.ok) {
+    //     const data = await response.json();
+    //     console.log(data.errorCode)
+    //     alert(data.message);
+    // }
 
     const count = await response.json();
     console.log("Serach Trains Count:", count);
@@ -207,6 +207,15 @@ async function createTrainCard(product) {
           localStorage.setItem('amount', product.amount);
           window.open('CancelReservation.html', '_blank');
          });
+
+        const textSpan9 = document.createElement('span');
+        textSpan9.innerHTML = `<span style="color : green"><i class="bi bi-receipt"></i></span> <span style="font-weight: bold;"> Download Invoice:</span> <span style="color: red"><a href="PaymentSuccess.html" style="color: green;text-decoration: underline">Download</a></span>`;
+        const cardText9 = document.createElement('p');
+        cardText9.classList.add('card-text');
+        cardText9.appendChild(textSpan9);
+        cardBody.appendChild(cardText9);
+
+     
     }
     
     const buyButton = document.createElement('button');
@@ -288,6 +297,12 @@ async function createTrainCard(product) {
       if(total>0){
         fetchData(total);
       }else{
+        Toastify({
+            text: "Hey User, No Future Reservations Found!",
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
         document.getElementById('noresulttext').innerHTML = 'No Upcoming Reservations Found '
       }
     }

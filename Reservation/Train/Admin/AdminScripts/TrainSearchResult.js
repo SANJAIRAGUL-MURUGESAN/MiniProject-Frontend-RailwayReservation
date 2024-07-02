@@ -32,7 +32,13 @@ async function calculatetotal() {
     if (!response.ok) {
         const data = await response.json();
         console.log(data.errorCode)
-        alert(data.message);
+        // alert(data.message);
+        Toastify({
+          text:  data.message,
+          style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+          }
+      }).showToast();
     }
 
     const count = await response.json();
@@ -250,6 +256,12 @@ async function createTrainCard(product) {
     if(total>0){
       fetchData(total);
     }else{
+      Toastify({
+        text: "Hey Admin, No Trains found for your search!",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
       document.getElementById('noresulttext').innerHTML = 'No Trains Found for your Search'
     }
   }

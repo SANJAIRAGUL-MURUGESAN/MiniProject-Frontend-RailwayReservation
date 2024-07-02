@@ -6,7 +6,7 @@ const phonenumber = document.querySelector('#phonenumber');
 const address = document.querySelector('#address');
 
 
-
+console.log('gvghj')
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     if(!validateInputs()){

@@ -174,13 +174,31 @@ async function addTrainRoute(){
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)
-            alert(data.message);
+            // alert(data.message);
+            Toastify({
+                text: data.message,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
         }else{
-            alert('Hey Admin, Train Added Successfully!');
+            // alert('Hey Admin, Train Added Successfully!');
+            Toastify({
+                text: "Hey Admin, Train Route Added Successfully!",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
         }
     })
     .catch(error => {
-        alert(error);
+        // alert(error);
+        Toastify({
+            text: error.message,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
     });
 }
 
@@ -190,7 +208,17 @@ form.addEventListener('submit',(e)=>{
     if(!validateInputs()){
         return
     }else{
-        addTrainRoute()
+        const userid = localStorage.getItem('userid')
+        if(userid == null){
+            Toastify({
+                text: "Hey Admin, Login to Add Train Route!",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        }else{
+            addTrainRoute()
+        }
     }
 })
 

@@ -114,6 +114,8 @@ async function addUnReservation(seatlist){
         })
     })
     .then(async res => {
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         const data = await res.json();
         console.log(data)
         if (!res.ok) {
@@ -171,6 +173,8 @@ form.addEventListener('submit',async(e)=>{
                 }
             }).showToast();
         }else{
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'flex';
             await addUnReservation(seatlist);
         }
     }

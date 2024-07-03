@@ -16,7 +16,7 @@ async function SeatDisplay(totol,reservedSeats){
 }
 
 async function fetchSeatData() {
-  fetch(`http://localhost:5062/api/User/CheckSeatDetailsofTrain`, {
+  await fetch(`http://localhost:5062/api/User/CheckSeatDetailsofTrain`, {
       method: 'POST',
       headers: {
           'Authorization': 'Bearer '+localStorage.getItem('token'),
@@ -24,6 +24,8 @@ async function fetchSeatData() {
        },
        body: JSON.stringify(localStorage.getItem('TrainIdDetails'))
   }).then(async (response) => {
+      const spinnerEl = document.querySelector('.spinnerborder');
+      spinnerEl.style.display = 'none';
       var data = await response.json();
       console.log(data);
       await SeatDisplay(data.totalSeat,data.reservedSeats);
@@ -73,7 +75,7 @@ async function convertDateTime2(date){
 
 var startingPoint;
 async function fetchTrainDetail() {
-  fetch(`http://localhost:5062/api/User/GetTrainById`, {
+  await fetch(`http://localhost:5062/api/User/GetTrainById`, {
       method: 'POST',
       headers: {
           'Authorization': 'Bearer '+localStorage.getItem('token'),
@@ -91,7 +93,7 @@ async function fetchTrainDetail() {
 }
 
 async function fetchTrainData() {
-  fetch(`http://localhost:5062/api/User/GetTrainRoutes`, {
+  await fetch(`http://localhost:5062/api/User/GetTrainRoutes`, {
       method: 'POST',
       headers: {
           'Authorization': 'Bearer '+localStorage.getItem('token'),

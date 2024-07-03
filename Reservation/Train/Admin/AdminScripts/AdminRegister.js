@@ -33,6 +33,8 @@ function addRegister(){
         })
     })
     .then(async res => {
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         const data = await res.json();
         console.log(data)
         if (!res.ok) {
@@ -56,6 +58,8 @@ form.addEventListener('submit',(e)=>{
         return
     }else{
         console.log('2')
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'flex';
         addRegister();
     }
 })

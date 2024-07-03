@@ -99,6 +99,8 @@ async function fetchTrainData() {
        },
        body: JSON.stringify(localStorage.getItem('TrainIdDetails'))
   }).then(async (response) => {
+      const spinnerEl = document.querySelector('.spinner-border');
+      spinnerEl.style.display = 'none';
       var data = await response.json();
       console.log(data);
       data.forEach(async(element, index)=> {
@@ -191,9 +193,6 @@ async function renderProducts(stationName,routeStartDate,arrivalTime,departureTi
 // fetchSeatData()
 // fetchTrainDetail()
 // fetchTrainData()
-
-
-
 
 const userid = localStorage.getItem('userid')
 if(userid == null){

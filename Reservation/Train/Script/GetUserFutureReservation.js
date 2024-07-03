@@ -87,6 +87,8 @@ async function fetchData(total) {
         },
         body: JSON.stringify(localStorage.getItem('userid'))
     }).then(async (response) => {
+        const spinnerEl = document.querySelector('.spinner-border');
+        spinnerEl.style.display = 'none';
         var data = await response.json();
         // console.log(data);
         data.forEach(element => {
@@ -303,6 +305,8 @@ async function createTrainCard(product) {
                 background: "linear-gradient(to right, #00b09b, #96c93d)",
             }
         }).showToast();
+        const spinnerEl = document.querySelector('.spinner-border');
+        spinnerEl.style.display = 'none';
         document.getElementById('noresulttext').innerHTML = 'No Upcoming Reservations Found '
       }
     }

@@ -94,6 +94,8 @@ async function fetchData(total) {
             "trainStartDate": converteddate
         })
     }).then(async (response) => {
+      const spinnerEl = document.querySelector('.spinnerborder');
+      spinnerEl.style.display = 'none';
         var data = await response.json();
         // console.log(data);
         data.forEach(element => {
@@ -247,10 +249,14 @@ async function createTrainCard(product) {
   async function run(){
     const total = await calculatetotal();
     console.log("Total:", total);
+    const spinnerEl = document.querySelector('.spinnerborder');
+    spinnerEl.style.display = 'flex';
     if(total>0){
       fetchData(total);
     }else{
       document.getElementById('noresulttext').innerHTML = 'No Trains Found for your Search'
+      const spinnerEl = document.querySelector('.spinnerborder');
+      spinnerEl.style.display = 'none';
     }
   }
   

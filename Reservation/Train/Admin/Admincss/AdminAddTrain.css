@@ -119,4 +119,15 @@ h1{
       margin: 0;
      }
   }
+
+  .spinnerborder{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .spinnerborder img{
+    height: 40px;
+    width: 40px;
+  }
   

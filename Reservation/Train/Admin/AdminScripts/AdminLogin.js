@@ -15,6 +15,8 @@ function userlogin(){
                 })
             })
             .then(async res => {
+                const spinnerEl = document.querySelector('.spinnerborder');
+                spinnerEl.style.display = 'none';
                 const data = await res.json();
                 console.log(data)
                 if (!res.ok) {
@@ -60,9 +62,13 @@ form.addEventListener('submit',async(e)=>{
         return;
     }else{
         const userid = localStorage.getItem('userid')
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'flex';
         if(userid == null){
             userlogin()
         }else{
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'none';
             Toastify({
                 text: "Hey Admin, You already Logged In!",
                 style: {

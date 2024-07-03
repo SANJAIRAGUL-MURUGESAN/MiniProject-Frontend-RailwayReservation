@@ -68,6 +68,8 @@ async function fetchData(total) {
             'Content-Type': 'application/json',
          },
     }).then(async (response) => {
+      const spinnerEl = document.querySelector('.spinnerborder');
+      spinnerEl.style.display = 'none';
         var data = await response.json();
         // console.log(data);
         data.forEach(element => {
@@ -260,9 +262,13 @@ async function createTrainCard(product) {
     }else{
       const total = await calculatetotal();
       console.log("Total:", total);
+      const spinnerEl = document.querySelector('.spinnerborder');
+      spinnerEl.style.display = 'flex';
       if(total>0){
         fetchData(total);
       }else{
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         Toastify({
           text: "Hey Admin, No Inline Trains Found!",
           style: {

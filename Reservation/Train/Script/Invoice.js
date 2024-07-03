@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     'Authorization': 'Bearer '+localStorage.getItem('token'),
                     'Content-Type': 'application/json',
                  },
-                 body: JSON.stringify(localStorage.getItem('TrainIdDetails'))
+                 body: JSON.stringify(localStorage.getItem('ReservationId'))
             }).then(async (response) => {
                 var data = await response.json();
                 console.log(data)

@@ -24,6 +24,8 @@ async function addClass(){
         })
     })
     .then(async res => {
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)
@@ -69,6 +71,8 @@ form.addEventListener('submit',(e)=>{
                 }
             }).showToast();
         }else{
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'flex';
             addClass()
         }
     }

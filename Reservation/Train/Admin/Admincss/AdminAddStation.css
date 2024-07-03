@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif; 
 } */
 
+
 #form{
     background-color: bisque;
     width:700px;
@@ -93,4 +94,6 @@ h1{
   .seat input[type="checkbox"] {
     margin-right: 5px;
   }
+
+
   

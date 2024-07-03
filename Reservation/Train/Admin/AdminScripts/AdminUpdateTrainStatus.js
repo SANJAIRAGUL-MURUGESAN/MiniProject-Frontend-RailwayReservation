@@ -12,6 +12,8 @@ async function updateTrainStatus(){
         body: JSON.stringify(parseInt(trainid))
     })
     .then(async res => {
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         if (!res.ok) {
             const data = await res.json();
             console.log(data.errorCode)
@@ -56,6 +58,8 @@ form.addEventListener('submit',(e)=>{
                 }
             }).showToast();
         }else{
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'flex';
             updateTrainStatus()
         }
     }

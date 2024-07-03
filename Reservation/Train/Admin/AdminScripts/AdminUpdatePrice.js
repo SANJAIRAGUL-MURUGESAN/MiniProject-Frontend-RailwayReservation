@@ -17,6 +17,8 @@ async function updatePricePerKm(){
     })
     .then(async res => {
         const data = await res.json();
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         if (!res.ok) {
             console.log(data.errorCode)
             // alert(data.message);
@@ -59,7 +61,9 @@ form.addEventListener('submit',(e)=>{
                 }
             }).showToast();
         }else{
-           updatePricePerKm()
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'flex';
+            updatePricePerKm()
         }
     }
 })

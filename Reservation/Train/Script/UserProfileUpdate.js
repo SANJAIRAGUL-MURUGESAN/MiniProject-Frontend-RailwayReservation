@@ -91,6 +91,8 @@ async function addRegister(){
         })
     })
     .then(async res => {
+        const spinnerEl = document.querySelector('.spinnerborder');
+        spinnerEl.style.display = 'none';
         const data = await res.json();
         console.log(data)
         if (!res.ok) {
@@ -145,6 +147,8 @@ form.addEventListener('submit',(e)=>{
                 }
             }).showToast();
         }else{
+            const spinnerEl = document.querySelector('.spinnerborder');
+            spinnerEl.style.display = 'flex';
             addRegister();
         }
     }

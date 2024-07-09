@@ -113,8 +113,11 @@ body {
     text-decoration: none;
     }
 
-.link a:hover {
+/* .link a:hover {
   color: var(--text-dark);
+} */
+.link a:hover {
+  color: var(--primary-color)
 }
 
 .header__container .section__header {

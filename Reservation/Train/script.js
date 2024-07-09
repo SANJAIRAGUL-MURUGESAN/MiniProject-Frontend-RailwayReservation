@@ -35,7 +35,7 @@ async function updateNavLinks() {
 
     const loggedInLinkprofile = document.createElement('li');
     loggedInLinkprofile.classList.add('link');
-    loggedInLinkprofile.innerHTML = `<a href="UserProfile.html">Profile</a>`; // Replace with your desired link
+    loggedInLinkprofile.innerHTML = `<a href="Profile.html">Profile</a>`; // Replace with your desired link
     loggedInLinks.appendChild(loggedInLinkprofile);
 
     const loggedInLinkOut = document.createElement('li');
@@ -61,7 +61,7 @@ async function updateNavLinks() {
 
     const loggedInLinkprofilem = document.createElement('li');
     loggedInLinkprofilem.classList.add('link');
-    loggedInLinkprofilem.innerHTML = `<a href="UserProfile.html">Profile</a>`; // Replace with your desired link
+    loggedInLinkprofilem.innerHTML = `<a href="Profile.html">Profile</a>`; // Replace with your desired link
     loggedInLinksMobile.appendChild(loggedInLinkprofilem)
 
     const loggedInLinkOutm = document.createElement('li');

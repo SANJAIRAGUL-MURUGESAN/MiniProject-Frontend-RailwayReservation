@@ -6,6 +6,7 @@ const phone = document.getElementById('phone');
 const disability = document.getElementById('disability');
 const address = document.getElementById('address');
 const email1 = document.getElementById('email1');
+const sc = document.getElementById('sc')
 
 
 async function populateDetails(element){
@@ -39,6 +40,7 @@ async function getUserDetails() {
     }else{
     // Fetch Profile from backend
     await fetchClasses();
+    await fetchScheduleCount();
 
     // Function to fetch classes from backend
     async function fetchClasses() {
@@ -59,6 +61,29 @@ async function getUserDetails() {
             await populateDetails(data)
             // classesn = await populateClassesDropdown(data); // Populate dropdown with fetched data
 
+        })
+        .catch(error => {
+            console.error('Error fetching User:', error);
+            alert('Failed to fetch User. Please try again later.');
+        });
+    }
+
+    async function fetchScheduleCount() {
+        await fetch('http://localhost:5062/api/User/GetUserSchedule', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(localStorage.getItem('userid'))
+        })
+        .then(async res => {
+            if (!res.ok) {
+                throw new Error('Failed to fetch classes');
+            }
+            const data = await res.json();
+            console.log(data)
+            sc.innerHTML = data
         })
         .catch(error => {
             console.error('Error fetching User:', error);

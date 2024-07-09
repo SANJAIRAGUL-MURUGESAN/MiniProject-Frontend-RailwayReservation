@@ -90,7 +90,7 @@ async function updateNavLinks() {
 
     const loggedInLinkHome = document.createElement('li');
     loggedInLinkHome.classList.add('link');
-    loggedInLinkHome.innerHTML = `<a href="index.html">Home</a>`; // Replace with your desired link
+    loggedInLinkHome.innerHTML = `<a href="AdminHome.html">Home</a>`; // Replace with your desired link
     loggedInLinks.appendChild(loggedInLinkHome);
 
     const loggedInLinkin = document.createElement('li');

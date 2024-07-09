@@ -35,6 +35,7 @@ async function addTrain(){
     const convertedTrainEndDate = await extractDateTime(traindeparturedatetime)
 
     console.log(convertedTrainStartDate)
+    console.log(convertedendtime)
 
     fetch('http://localhost:5062/api/Admin/AddTrainByAdmin', {
         method: 'POST',
@@ -47,10 +48,10 @@ async function addTrain(){
             "trainNumber": trainnumber.value,
             "startingPoint": startingpoint.value.trim(),
             "endingPoint": endingpoint.value.trim(),
-            "trainStartDate": convertedTrainStartDate,
-            "trainEndDate": convertedTrainEndDate,
-            "arrivalTime": convertedstarttime,
-            "departureTime": convertedendtime,
+            "trainStartDate": convertedstarttime,
+            "trainEndDate": convertedendtime,
+            "arrivalTime": convertedTrainStartDate,
+            "departureTime": convertedTrainEndDate,
             "totalSeats": totalseats.value,
             "pricePerKM": priceperkm.value,
             "trainStatus": trainstatus.value
@@ -59,6 +60,7 @@ async function addTrain(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)
@@ -75,6 +77,9 @@ async function addTrain(){
                 text: "Hey Admin, Train Added Successfully!",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                callback: function() {
+                    window.open('AdminAddTrainRoute.html'); // Redirect after toast disappears
                 }
             }).showToast();
         }

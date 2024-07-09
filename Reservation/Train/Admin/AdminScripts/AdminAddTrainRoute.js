@@ -68,13 +68,27 @@ async function populateStationTrackDropdown(classes) {
 }
 
 async function fetchTracks() {
+    const startd = document.getElementById("routestartdate").value
+    console.log(startd)
+    let date = new Date(startd);
+    let formattedDate = date.toISOString().slice(0, 23) + "0";
+
+    const endd = document.getElementById("routeenddate").value
+    console.log(endd)
+    let date1 = new Date(endd);
+    let formattedDate1 = date1.toISOString().slice(0, 23) + "0";
+
     await fetch('http://localhost:5062/api/Admin/CheckReservedTracksofStation', {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token'),
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(stationid.value)
+        body: JSON.stringify({
+            "stationId": stationid.value,
+            "routeStartDate": formattedDate,
+            "routeEndDate": formattedDate1
+        })
     })
     .then(async res => {
         const data = await res.json();
@@ -173,6 +187,7 @@ async function addTrainRoute(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)

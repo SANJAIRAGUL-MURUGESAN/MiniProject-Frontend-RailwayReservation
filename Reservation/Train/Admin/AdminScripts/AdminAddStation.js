@@ -22,6 +22,7 @@ function addStation(){
         const data = await res.json();
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         if (!res.ok) {
             console.log(data.errorCode)
             // alert(data.message);
@@ -39,7 +40,7 @@ function addStation(){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('AdminAddTrain.html'); // Redirect after toast disappears
+                    window.open('AdminAddTrack.html'); // Redirect after toast disappears
                 }
             }).showToast();
         }

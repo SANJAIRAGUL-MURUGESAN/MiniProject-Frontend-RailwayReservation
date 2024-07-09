@@ -273,9 +273,6 @@ async function createTrainCard(product) {
           text: "Hey Admin, No Inline Trains Found!",
           style: {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
-          },
-          callback: function() {
-            window.open('AdminHome.html'); // Redirect after toast disappears
           }
       }).showToast();
         document.getElementById('noresulttext').innerHTML = 'No Inline Trains Found '

@@ -39,13 +39,34 @@ function addRegister(){
         console.log(data)
         if (!res.ok) {
             console.log(data.errorCode)
-            alert(data.message);
+            // alert(data.message);
+            Toastify({
+                text: data.message,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
         }else{
-            alert('Hey User, Registered Successfully!');
+            // alert('Hey User, Registered Successfully!');
+            Toastify({
+                text: "Hey Admin, Registration Successful! Redirecting...",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                callback: function() {
+                  window.open('AdminHome.html'); // Redirect after toast disappears
+                }
+            }).showToast();
         }
     })
     .catch(error => {
-        alert(error);
+        // alert(error);
+        Toastify({
+            text: error.message,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
     });
 }
 

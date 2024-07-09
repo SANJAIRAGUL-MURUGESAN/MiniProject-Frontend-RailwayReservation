@@ -24,6 +24,7 @@ function addTrack(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)
@@ -40,9 +41,6 @@ function addTrack(){
                 text: "Hey Admin, Track to Station Added Successfully! Redirecting...",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-                callback: function() {
-                  window.open('AdminAddTrain.html'); // Redirect after toast disappears
                 }
             }).showToast();
         }

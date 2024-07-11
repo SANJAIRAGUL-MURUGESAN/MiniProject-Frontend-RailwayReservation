@@ -52,7 +52,7 @@ async function updateNavLinks() {
     loggedInLinkOut.addEventListener('click', async(event) => {
       console.log('Logout')
       await clearAllLocalStorage();
-      window.open('AdminHome.html', '_blank');
+      window.location.href = 'AdminHome.html';
     });
 
     const loggedInLinkHomem = document.createElement('li');
@@ -83,7 +83,7 @@ async function updateNavLinks() {
     loggedInLinkOutm.addEventListener('click', async(event) => {
       console.log('Logout')
       await clearAllLocalStorage();
-      window.open('AdminHome.html', '_blank');
+      window.location.href = 'AdminHome.html';
     });
 
   }else{

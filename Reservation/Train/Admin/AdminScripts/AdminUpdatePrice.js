@@ -36,7 +36,7 @@ async function updatePricePerKm(){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('TrainDetails.html'); // Redirect after toast disappears
+                    window.location.href = 'TrainDetails.html'; // Redirect after toast disappears
                 }
             }).showToast();
         }

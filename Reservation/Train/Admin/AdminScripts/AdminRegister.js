@@ -35,6 +35,7 @@ function addRegister(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         const data = await res.json();
         console.log(data)
         if (!res.ok) {
@@ -54,7 +55,7 @@ function addRegister(){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('AdminHome.html'); // Redirect after toast disappears
+                    window.location.href = 'AdminLogin.html'; // Redirect after toast disappears
                 }
             }).showToast();
         }

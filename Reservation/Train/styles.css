@@ -117,7 +117,7 @@ body {
   color: var(--text-dark);
 } */
 .link a:hover {
-  color: var(--primary-color)
+  color: yellow
 }
 
 .header__container .section__header {

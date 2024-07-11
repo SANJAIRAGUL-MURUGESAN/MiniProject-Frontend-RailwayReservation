@@ -38,7 +38,7 @@ function addTrack(){
         }else{
             // alert('Hey Admin, Track Added to the Station Successfully!');
             Toastify({
-                text: "Hey Admin, Track to Station Added Successfully! Redirecting...",
+                text: "Hey Admin, Track to Station Added Successfully!",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }

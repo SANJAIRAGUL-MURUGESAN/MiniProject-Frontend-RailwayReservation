@@ -60,7 +60,6 @@ async function addTrain(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
-        form.reset();
         const data = await res.json();
         if (!res.ok) {
             console.log(data.errorCode)
@@ -72,6 +71,7 @@ async function addTrain(){
                 }
             }).showToast();
         }else{
+            form.reset();
             // alert('Hey Admin, Train Added Successfully!');
             Toastify({
                 text: "Hey Admin, Train Added Successfully!",

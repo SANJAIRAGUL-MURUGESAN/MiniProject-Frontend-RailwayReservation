@@ -2,6 +2,20 @@ const form = document.querySelector('#form')
 const userid = document.querySelector('#userid');
 const password = document.querySelector('#password');
 
+const isloggedin = localStorage.getItem('token')
+
+if(isloggedin){
+    Toastify({
+        text: "Hey Admin! You are already logged In, Redirecting...",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        callback: function() {
+            window.location.href = 'AdminHome.html'; // Redirect after toast disappears
+        }
+    }).showToast();
+}
+
 
 function userlogin(){
             fetch('http://localhost:5062/api/Admin/AdminLogin', {
@@ -32,6 +46,7 @@ function userlogin(){
                     localStorage.setItem('token',data.token);
                     localStorage.setItem('userid',userid.value.trim());
                     localStorage.setItem('usertype','admin')
+                    form.reset();
                     // alert('Hey User, Login Successful!');
                     Toastify({
                         text: "Hey Admin, Login Successful! Redirecting...",
@@ -39,7 +54,7 @@ function userlogin(){
                             background: "linear-gradient(to right, #00b09b, #96c93d)",
                         },
                         callback: function() {
-                          window.open('AdminHome.html'); // Redirect after toast disappears
+                            window.location.href = 'AdminHome.html'; // Redirect after toast disappears
                         }
                     }).showToast();
                 }

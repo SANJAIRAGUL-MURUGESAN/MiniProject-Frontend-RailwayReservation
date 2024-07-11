@@ -105,13 +105,14 @@ async function addRegister(){
             }).showToast();
             // alert(data.message);
         }else{
+            form.reset()
             Toastify({
                 text: "Hey User, Profile Updates Successfully! Redirecting...",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('index.html'); // Redirect after toast disappears
+                  window.location.href = 'Profile.html';  // Redirect after toast disappears
                 }
             }).showToast();
             // alert('Hey User, Registered Successfully!');

@@ -3,6 +3,20 @@ const userid = document.querySelector('#userid');
 const password = document.querySelector('#password');
 // import Toastify from 'toastify-js'
 
+const isloggedin = localStorage.getItem('token')
+
+if(isloggedin){
+    Toastify({
+        text: "Hey User! You are already logged In, Redirecting...",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        callback: function() {
+            window.location.href = 'index.html'; // Redirect after toast disappears
+        }
+    }).showToast();
+}
+
 function userlogin(){
     fetch('http://localhost:5062/api/User/UserLogin', {
         method: 'POST',
@@ -10,7 +24,7 @@ function userlogin(){
             'Content-Type': 'application/json',
          },
         body: JSON.stringify({
-            "userid": userid.value.trim(),
+            "username": userid.value.trim(),
             "password": password.value.trim()
         })
     })
@@ -30,8 +44,9 @@ function userlogin(){
             }).showToast();
         }else{
             localStorage.setItem('token',data.token);
-            localStorage.setItem('userid',userid.value.trim());
+            localStorage.setItem('userid',data.userId);
             localStorage.setItem('usertype','user')
+            form.reset();
             // alert('Hey User, Login Successful!');
             Toastify({
                 text: "Hey User, Login Successful! Redirecting...",
@@ -39,7 +54,7 @@ function userlogin(){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('index.html'); // Redirect after toast disappears
+                    window.location.href = 'index.html'; // Redirect after toast disappears
                 }
             }).showToast();
         }

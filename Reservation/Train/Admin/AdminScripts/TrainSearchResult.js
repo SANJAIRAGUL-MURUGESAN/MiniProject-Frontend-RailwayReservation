@@ -198,8 +198,8 @@ async function createTrainCard(product) {
 
     buyButton.addEventListener('click', function() {
         localStorage.setItem('TrainIdDetails', product.trainId);
-        // window.location.href = 'TrainDetails.html';
-        window.open('TrainDetails.html', '_blank');
+        window.location.href = 'TrainDetails.html';
+        // window.open('TrainDetails.html', '_blank');
     });
   
     cardBody.appendChild(bottomRow);

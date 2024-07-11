@@ -207,7 +207,8 @@ async function createTrainCard(product) {
         buyButton2.addEventListener('click', function() {
           localStorage.setItem('ReservationId', product.reservationId);
           localStorage.setItem('amount', product.amount);
-          window.open('CancelReservation.html', '_blank');
+        //   window.open('CancelReservation.html', '_blank');
+            window.location.href = 'CancelReservation.html'; 
          });
 
         const textSpan9 = document.createElement('span');
@@ -228,7 +229,8 @@ async function createTrainCard(product) {
     buyButton.addEventListener('click', function() {
         localStorage.setItem('TrainIdDetails', product.trainId);
         // window.location.href = 'TrainDetails.html';
-        window.open('TrainDetails.html', '_blank');
+        // window.open('TrainDetails.html', '_blank');
+        window.location.href = 'TrainDetails.html'; 
     });
   
     cardBody.appendChild(bottomRow);
@@ -335,6 +337,13 @@ async function createTrainCard(product) {
 
 async function addPayment(){
 
+    Toastify({
+        text: "Please Hold On, Redirecting to Payment Page...",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
+
     const amountString = localStorage.getItem('amount');
     const reservationid = localStorage.getItem('ReservationId')
     const userid = localStorage.getItem('userid');
@@ -369,15 +378,7 @@ async function addPayment(){
                 }
             }).showToast();
         }else{
-            Toastify({
-                text: "Please Hold On, Redirecting to Payment Page...",
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-                callback: function() {
-                  window.open('https://buy.stripe.com/test_aEUcQP8JpdJKf3a144', '_blank');
-                }
-            }).showToast();
+            window.location.href = 'https://buy.stripe.com/test_aEUcQP8JpdJKf3a144';
         }
     })
     .catch(error => {

@@ -223,7 +223,7 @@ async function addReservation(list,classname){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                  window.open('index.html'); // Redirect after toast disappears
+                    window.location.href = 'GetUserFutureReservations.html';   // Redirect after toast disappears
                 }
             }).showToast();
         }

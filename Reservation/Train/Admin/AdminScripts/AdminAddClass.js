@@ -37,14 +37,12 @@ async function addClass(){
                 }
             }).showToast();
         }else{
+            form.reset();
             // alert('Hey Admin, Class for Train Added Successfully!');
             Toastify({
-                text: "Hey Admin, Class for Train Added Successfully! Redirecting...",
+                text: "Hey Admin, Class for Train Added Successfully!",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-                callback: function() {
-                  window.open('TrainDetails.html'); // Redirect after toast disappears
                 }
             }).showToast();
         }

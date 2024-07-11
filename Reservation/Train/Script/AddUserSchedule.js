@@ -30,6 +30,7 @@ async function addSchedule(){
     .then(async res => {
         const spinnerEl = document.querySelector('.spinnerborder');
         spinnerEl.style.display = 'none';
+        form.reset();
         const data = await res.json();
         console.log(data)
         if (!res.ok) {
@@ -44,12 +45,9 @@ async function addSchedule(){
             }).showToast();
         }else{
             Toastify({
-                text: "Hey User, Train Scheduling Successful! Redirecting...",
+                text: "Hey User, Train Scheduling Successful! You will be notified through mail once your requirement is met",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-                callback: function() {
-                  window.open('index.html'); // Redirect after toast disappears
                 }
             }).showToast();
         }

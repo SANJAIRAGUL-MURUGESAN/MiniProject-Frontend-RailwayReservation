@@ -40,7 +40,7 @@ function addStation(){
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
                 callback: function() {
-                    window.open('AdminAddTrack.html'); // Redirect after toast disappears
+                    window.location.href = 'AdminAddTrack.html'; // Redirect after toast disappears
                 }
             }).showToast();
         }

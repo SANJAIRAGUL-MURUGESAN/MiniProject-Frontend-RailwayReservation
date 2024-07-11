@@ -18,7 +18,8 @@ form1.addEventListener('submit',(e)=>{
 
     form1.reset();
     
-    window.open('SearchTrainResult.html', '_blank');
+    // window.open('SearchTrainResult.html', '_blank');
+    window.location.href = 'SearchTrainResult.html'; 
 
 })
 

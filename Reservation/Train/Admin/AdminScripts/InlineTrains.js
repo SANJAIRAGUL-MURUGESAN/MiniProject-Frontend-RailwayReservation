@@ -145,7 +145,7 @@ async function createTrainCard(product) {
     cardText4.appendChild(textSpan3);
     cardBody.appendChild(cardText4);
 
-    const timestring = await convertDateTime2(product.arrivalTime)
+    const timestring = await convertDateTime2(product.departureTime)
     const textSpan4 = document.createElement('span');
     textSpan4.innerHTML = `<span style="color : red"><i class="bi bi-clock"></i></span> <span style="font-weight: bold;"> Departure Time:</span> <span style="color: red">${timestring}</span>`;
     const cardText5 = document.createElement('p');
@@ -186,14 +186,15 @@ async function createTrainCard(product) {
   
     const buyButton = document.createElement('button');
     buyButton.classList.add('btn', 'btn-primary');
-    buyButton.textContent = 'Edit';
+    buyButton.textContent = 'Update';
     bottomRow.appendChild(buyButton);
 
     buyButton.addEventListener('click', function() {
       // Store trainName in localStorage
       localStorage.setItem('reservedTrainName', product.trainName);
       localStorage.setItem('TrainIdDetails', product.trainId);
-      window.open('TrainDetails.html', '_blank');
+      // window.open('TrainDetails.html', '_blank');
+      window.location.href = 'TrainDetails.html'; 
       // You can also redirect or perform other actions here if needed
     });
   
